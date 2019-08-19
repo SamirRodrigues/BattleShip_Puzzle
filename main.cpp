@@ -114,5 +114,5 @@ int main( int argc, char *argv[] )
     
     std::cout << ">>> cols = " << c << ", rows = "  << r << ", npuzzles = " << np << std::endl;
 
-    //VOID PUZZLE_GENERATE(c,r,np);
+   // puzzle_generator(c,r,np);
 }
