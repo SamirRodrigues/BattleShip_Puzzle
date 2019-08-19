@@ -5,6 +5,10 @@
 #include <algorithm>
 #include <stdexcept>
 
+#include "../include/puzzle_generator.h"
+#include "../include/ship_generator.h"
+#include "../include/board_generator.h"
+
 #define MAX_COL 16
 #define MAX_ROW 16
 #define MAX_NPUZZLE 100
@@ -63,7 +67,7 @@ int main( int argc, char *argv[] )
         // convert the current argument to lower case.
         auto s_arg = str_tolower( argv[i] );
         
-        if ( s_arg == "-r" or s_arg == "--row" or s_arg == "-row" or s_arg == "--r"  )
+        if ( s_arg == "-r" or s_arg == "--row" or s_arg == "-row" or s_arg == "--r" or s_arg == "--rows" or s_arg == "-rows" )
         {
             int nrows{0};
             if ( (i+1) == argc )
@@ -80,7 +84,7 @@ int main( int argc, char *argv[] )
                 
             r = nrows;
         }
-        else if ( s_arg == "-c" or s_arg == "--col" or s_arg == "-col" or s_arg == "--c"  )
+        else if ( s_arg == "-c" or s_arg == "--col" or s_arg == "-col" or s_arg == "--c" or s_arg == "-cols" or s_arg == "--cols" )
         {
             int ncols{0};
             try {
@@ -114,5 +118,12 @@ int main( int argc, char *argv[] )
     
     std::cout << ">>> cols = " << c << ", rows = "  << r << ", npuzzles = " << np << std::endl;
 
-   // puzzle_generator(c,r,np);
+    puzzle_generator(c,r,np);
+    std::cout << std::endl;
+    ShipG::Battleship(np,c,r);
+    ShipG::Crouiser(np,c,r);
+    ShipG::Destroyer(np,c,r);
+    ShipG::Submariner(np,c,r);
+    std::cout << std::endl;
+    BoardG::Water(np,c,r);
 }

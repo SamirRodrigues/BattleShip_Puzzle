@@ -1,19 +1,4 @@
-#include <iostream>
-
-void puzzle_generator (int c, int r, int np);
-
-int main (void)
-{
-int c, r, np;
-c = 16;
-r = 16;
-np = 100;
-
-puzzle_generator(c,r,np);
-
-    return 0;
-}
-
+#include "../include/puzzle_generator.h"
 
 void puzzle_generator (int c, int r, int np)
 {
