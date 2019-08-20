@@ -4,6 +4,7 @@
 #include <cctype>
 #include <algorithm>
 #include <stdexcept>
+#include <vector>
 
 #include "../include/puzzle_generator.h"
 #include "../include/ship_generator.h"
@@ -48,6 +49,8 @@ int main( int argc, char *argv[] )
 {
     // Default values.
     int r{DEF_ROW}, c{DEF_COL}, np{DEF_NPUZZLE};
+    int board [MAX_COL][MAX_ROW];
+    
     
     if ( argc == 1 )
     {
@@ -118,12 +121,8 @@ int main( int argc, char *argv[] )
     
     std::cout << ">>> cols = " << c << ", rows = "  << r << ", npuzzles = " << np << std::endl;
 
-    puzzle_generator(c,r,np);
-    std::cout << std::endl;
-    ShipG::Battleship(np,c,r);
-    ShipG::Crouiser(np,c,r);
-    ShipG::Destroyer(np,c,r);
-    ShipG::Submariner(np,c,r);
-    std::cout << std::endl;
-    BoardG::Water(np,c,r);
+    PuzzleG::puzzle_generator(c,r,np,board);
+
+    return EXIT_SUCCESS;
+    
 }
