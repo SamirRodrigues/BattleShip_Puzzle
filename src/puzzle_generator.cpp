@@ -26,7 +26,7 @@ namespace PuzzleG
 
     void puzzle_generator (int c, int r, int np, int board[MAX_COL][MAX_ROW])
     {
-        int aux(0);
+        int aux(0); // O auxiliar serve para informar quantos puzzles ja foram feitos
 
         if(np < 4)
         {
@@ -38,29 +38,26 @@ namespace PuzzleG
         }
         else
         {
-            int Dif_num = np/4;//Divide the number of boards by four, as they need to generate only one-quarter of the boards ordered
+            int Dif_num = np/4; //Divide o número de puzzles (np) por 4, pois a função de ReflectBoard consegue gerar 3 novos puzzles com base no primeiro (3+1=4)
             
 
 		    while(aux < Dif_num)
             {
-			    spawn_board(board,r,c);
-			    ReflectBoard(board,r,c);
+			    spawn_board(board,r,c); // Gera um puzzle base
+			    ReflectBoard(board,r,c); // Cria 3 novos puzzles com base no anterior
 			    aux++;
 		    }
 
-		    //if the number requested by the user is not divisible by 4, the program creates more boards to complete
-		    if((Dif_num%4) != 0)
-            {
-                int tam = np - (Dif_num*4);
+		    if((Dif_num % 4) != 0) // Se a quantidade de puzzles pedidos não for divisível por 4, será necessário gerar a quantidade de puzzles que faltar
+            {                      
+                int rest = np - (Dif_num * 4); // Pego o resto da divisão 
 
-			    while(tam > 0)
+			    while(rest > 0)
                 {
-				    spawn_board(board,r,c);
-				    tam --;
+				    spawn_board(board,r,c); // Gera os remanecentes
+				    rest --;
 			    }
 		    }	    
         }
-
-        
     }
 }

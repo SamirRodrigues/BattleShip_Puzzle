@@ -9,7 +9,9 @@
 namespace PuzzleG
 {
     void puzzle_generator (int c, int r, int np, int board[MAX_COL][MAX_ROW]);
+
     void spawn_board(int board[MAX_COL][MAX_ROW], int c, int r);
+    
     void ReflectBoard(int board[MAX_COL][MAX_ROW], int c, int r);
 }
 

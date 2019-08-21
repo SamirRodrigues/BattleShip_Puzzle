@@ -49,28 +49,28 @@ namespace BoardG
         {
 			for(int j(0); j < col; j++)
             {
-				if(board[i][j] == 1 && board[i+1][j] == 1 && board[i-1][j] != 1) // Se o elemento for barco e ponta vertical superir
+				if(board[i][j] == 1 /*Ele = 1*/ && board[i+1][j] == 1 /*Inferior = 1*/ && board[i-1][j] != 1 /*Superior != 1*/) // Se o elemento for barco e ponta vertical superir
                 {
 					std::cout<<"▲ ";
 				}
-                else if(board[i][j] == 1 && board[i+1][j] != 1 && board[i-1][j] == 1) // Se o elemento for barco e ponta vertical inferior
+                else if(board[i][j] == 1 /*Ele = 1*/ && board[i+1][j] != 1 /*Inferior != 1*/ && board[i-1][j] == 1 /*Superior = 1*/) // Se o elemento for barco e ponta vertical inferior
                 {
 					std::cout<<"▼ ";
 				}
-                else if((board[i][j] == 1 && board[i+1][j] == 1 && board[i-1][j] == 1) // Se as laterais tiverem elemento barco
-					 || (board[i][j] == 1 && board[i][j+1] == 1 && board[i][j-1] == 1)) // Se as partes superior e inferior tiverem elemento barco
+                else if((board[i][j] == 1 /*Ele = 1*/ && board[i+1][j] == 1 /*Inferior = 1*/ && board[i-1][j] == 1 /*Superior = 1*/) // Se as laterais tiverem elemento barco
+					 || (board[i][j] == 1 /*Ele = 1*/ && board[i][j+1] == 1 /*Direita = 1*/ && board[i][j-1] == 1 /*Esquerda = 1*/)) // Ou Se as partes superior e inferior tiverem elemento barco
                 {
 					std::cout<<"◼ ";
 				}
-                else if(board[i][j] == 1 && board[i][j+1] == 1 && board[i-1][j] != 1) // Se o elemento for barco e ponta horizontal esquerda
+                else if(board[i][j] == 1 /*Ele = 1*/ && board[i][j+1] == 1 /*Direita = 1*/ && board[i][j-1] != 1 /*Esquerda != 1*/) // Se o elemento for barco e ponta horizontal esquerda
                 {
 					std::cout<<"◀︎ ";
 				}
-                else if(board[i][j] == 1 && board[i][j+1] != 1 && board[i-1][j] == 1) // Se o elemento for barco e ponta horizontal direita
+                else if(board[i][j] == 1 /*Ele = 1*/ && board[i][j+1] != 1 /*Direita != 1*/ && board[i][j-1] == 1 /*Esquerda = 1*/) // Se o elemento for barco e ponta horizontal direita
                 {
 					std::cout<<"▶︎ ";
 				}
-                else if (board[i][j] == 4) // Se o elemento for um submarino
+                else if (board[i][j] == 2) // Se o elemento for um submarino
                 {
 					std::cout<<"● ";
 				}
