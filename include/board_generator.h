@@ -4,20 +4,17 @@
 #include <iostream>
 #include <random>
 
-#define MAX_COL 16
-#define MAX_ROW 16
-
 /* BOARD GENERATOR */
 
 namespace BoardG
 {
-	void Water(int board[MAX_COL][MAX_ROW], int row, int col);
+	void Water(std::vector<std::vector<int>> &board, int row, int col);
 
-    void ReflectBoardVertical(int board[MAX_COL][MAX_ROW], int row, int col);
+    void ReflectBoardVertical(std::vector<std::vector<int>> &board, int row, int col);
 
-    void ReflectBoardHorizontal(int board[MAX_COL][MAX_ROW], int row, int col);
+    void ReflectBoardHorizontal(std::vector<std::vector<int>> &board, int row, int col);
 
-    void Print(int board[MAX_COL][MAX_ROW], int row,int col);
+    void Print(std::vector<std::vector<int>> &board, int row,int col);
 }
 
 #endif

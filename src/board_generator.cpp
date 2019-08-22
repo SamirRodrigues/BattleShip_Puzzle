@@ -4,7 +4,8 @@
 
 namespace BoardG
 {
-    void Water(int board[MAX_COL][MAX_ROW], int row, int col) //Reset de board. Put 0 in all Quads
+    void Water(std::vector<std::vector<int>> &board, int row, int col) /* Preenche a matriz com números 0,
+																 que foi o elemento escolhido para representar a água nesse puzzle.*/
     {		
 		for(int i(0); i < row; i++)
         {
@@ -15,7 +16,7 @@ namespace BoardG
 		}
 	}
 
-    void ReflectBoardVertical(int board[MAX_COL][MAX_ROW], int row, int col)
+    void ReflectBoardVertical(std::vector<std::vector<int>> &board, int row, int col) /*Reflete a matriz de maneira vertical*/
     {
 		
 		for(int i(0); i < row; i++)
@@ -29,7 +30,7 @@ namespace BoardG
 		}
 	}
 
-    void ReflectBoardHorizontal(int board[MAX_COL][MAX_ROW], int row, int col){
+    void ReflectBoardHorizontal(std::vector<std::vector<int>> &board, int row, int col){ /*Reflete a matriz de maneira horizontal*/
 		for(int i(0); i < row/2; i++)
         {
 			for(int j(0); j < col; j++)
@@ -41,7 +42,7 @@ namespace BoardG
 		}
 	}
 
-    void Print(int board[MAX_COL][MAX_ROW], int row,int col){
+    void Print(std::vector<std::vector<int>> &board, int row,int col){ /*Responsável por mostrar o resultado gerado*/
 	
 		std::cout << std::endl << std::endl << std::endl;
 
@@ -70,11 +71,11 @@ namespace BoardG
                 {
 					std::cout<<"▶︎ ";
 				}
-                else if (board[i][j] == 2) // Se o elemento for um submarino
+                else if (board[i][j] == 3) // Se o elemento for um submarino
                 {
 					std::cout<<"● ";
 				}
-                else if(board[i][j] == 0) // Se o elemento for água
+                else if(board[i][j] == 0 || board[i][j] == 2) // Se o elemento for água
                 {
 					std::cout<<". ";
 				}

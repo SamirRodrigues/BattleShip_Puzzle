@@ -5,21 +5,18 @@
 #include <random>
 #include <vector>
 
-#define MAX_COL 16
-#define MAX_ROW 16
-
 
 /* SHIP GENERATOR */
 
 namespace ShipG 
 {
-    void Battleship(int board[MAX_ROW][MAX_COL], int col, int row);
+    void Battleship(std::vector<std::vector<int>> &board, int col, int row);
     
-    void Crouiser(int board[MAX_ROW][MAX_COL], int col, int row);
+    void Crouiser(std::vector<std::vector<int>> &board, int col, int row);
 
-    void Destroyer(int board[MAX_ROW][MAX_COL], int col, int row);
+    void Destroyer(std::vector<std::vector<int>> &board, int col, int row);
 
-    void Submarine(int board[MAX_ROW][MAX_COL], int col, int row);
+    void Submarine(std::vector<std::vector<int>> &board, int col, int row);
 }
 
 #endif

@@ -3,16 +3,14 @@
 
 #include <iostream>
 
-#define MAX_COL 16
-#define MAX_ROW 16
 
 namespace PuzzleG
 {
-    void puzzle_generator (int c, int r, int np, int board[MAX_COL][MAX_ROW]);
+    void puzzle_generator (int c, int r, int np);
 
-    void spawn_board(int board[MAX_COL][MAX_ROW], int c, int r);
+    void spawn_board(std::vector<std::vector<int>> &board, int c, int r);
     
-    void ReflectBoard(int board[MAX_COL][MAX_ROW], int c, int r);
+    void ReflectBoard(std::vector<std::vector<int>> &board, int c, int r);
 }
 
 #endif
