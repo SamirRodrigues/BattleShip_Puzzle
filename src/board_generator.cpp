@@ -5,7 +5,7 @@
 namespace BoardG
 {
     void Water(std::vector<std::vector<int>> &board, int row, int col) /* Preenche a matriz com números 0,
-																 que foi o elemento escolhido para representar a água nesse puzzle.*/
+																 		  que foi o elemento escolhido para representar a água nesse puzzle.*/
     {		
 		for(int i(0); i < row; i++)
         {
@@ -42,8 +42,20 @@ namespace BoardG
 		}
 	}
 
-    void Print(std::vector<std::vector<int>> &board, int row,int col){ /*Responsável por mostrar o resultado gerado*/
-	
+	void testPrint(std::vector<std::vector<int>> &board, int row,int col)
+	{
+		for (int i(0); i < row; i++)
+        {
+			for(int j(0); j < col; j++)
+            {
+				std::cout << board[i][j];
+			}
+                
+			std::cout<<std::endl;
+		}
+	}
+    void Print(std::vector<std::vector<int>> &board, int row,int col)/*Responsável por mostrar o resultado gerado*/
+	{ 	
 		std::cout << std::endl << std::endl << std::endl;
 
 		for (int i(0); i < row; i++)

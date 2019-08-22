@@ -8,9 +8,13 @@ namespace PuzzleG
     {
         BoardG::Water(board,c,r); // Put water in all board
         ShipG::Battleship(board,c,r); // Spawn Battleship
+        BoardG::testPrint(board,c,r);
         ShipG::Crouiser(board,c,r); // Spawn Crouiser
+        BoardG::testPrint(board,c,r);
         ShipG::Destroyer(board,c,r);   // Spawn Destroyer
+        BoardG::testPrint(board,c,r);
         ShipG::Submarine(board,c,r); // Spawn Submarine
+        BoardG::testPrint(board,c,r);
         BoardG::Print(board,c,r);
     }
 
@@ -27,8 +31,8 @@ namespace PuzzleG
     void puzzle_generator (int c, int r, int np)
     {
         std::vector<std::vector<int>> board;
-        std::vector<int> single_row(c);
-        board.resize(r, single_row);
+        std::vector<int> single_row(c+2);
+        board.resize(r+2, single_row);
 
         int aux(0); // O auxiliar serve para informar quantos puzzles ja foram feitos
 
@@ -47,8 +51,8 @@ namespace PuzzleG
 
 		    while(aux < Dif_num)
             {
-			    spawn_board(board,r,c); // Gera um puzzle base
-			    ReflectBoard(board,r,c); // Cria 3 novos puzzles com base no anterior
+			    PuzzleG::spawn_board(board,r,c); // Gera um puzzle base
+			    PuzzleG::ReflectBoard(board,r,c); // Cria 3 novos puzzles com base no anterior
 			    aux++;
 		    }
 
@@ -58,7 +62,7 @@ namespace PuzzleG
 
 			    while(rest > 0) // Gera a quatidade igual ao resto da divisão acima
                 {
-				    spawn_board(board,r,c); 
+				    PuzzleG::spawn_board(board,r,c); 
 				    rest --;
 			    }
 		    }	    
