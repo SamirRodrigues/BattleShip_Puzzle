@@ -10,21 +10,21 @@ namespace ShipG
         std::random_device rand;   // Função geradora de valores randomicos
 		std::mt19937 seed(rand()); // Função responsável por alterar a seed dos valores randomicos, para que sejam sempre diferentes
 
-		std::uniform_int_distribution <> picker1(1, col - 1); // Função responsável por sortear um valor entre 0 e o número de colunas 
+		std::uniform_int_distribution <> picker1(0, col); // Função responsável por sortear um valor entre 0 e o número de colunas 
                                                           // Essa função irá escolher em qual coluna a "cabeça" do Battleship irá spawnar
 		
-		std::uniform_int_distribution <> picker2(1, row - 4); // Função responsável por definir em qual linha a "cabeça" do Battleship irá spawnar por meio de sorteio
+		std::uniform_int_distribution <> picker2(0, row - 3); // Função responsável por definir em qual linha a "cabeça" do Battleship irá spawnar por meio de sorteio
                                                               /* O valor de row é decrescido de 3 pois caso a cabeça do battleship seja um valor maior que row-3,
                                                                  seu corpo irá sair do board, já que ele ocupa 4 espaços */
                                                               /* Dessa forma, o barco será colocado na posição vertical, já que cada parte do corpo subsequente irá
                                                                  spawnar na próxima linha abaixo */
         
-        std::uniform_int_distribution <> picker3(1, col - 4); // Acrescento mais um picker para escolher uma coordenada no caso de colocar o barco na Horizontal.
+        std::uniform_int_distribution <> picker3(0, col - 3); // Acrescento mais um picker para escolher uma coordenada no caso de colocar o barco na Horizontal.
 
         std::uniform_int_distribution <> V_or_H(0,1); // Define se o barco será spawnado na Vertical(0) ou na Horizontal(1).
 		
         
-        int shadow = 2;    // Valor para sobra do barco
+ 
         int guidance = V_or_H(seed); // Variável que recebe a orientação dos barcos (Vertical ou Horizontal).
      
         if(guidance == 0) // Orientação Vertical
@@ -32,36 +32,18 @@ namespace ShipG
             // Variáveis responsáveis por definir a coordenada em que a "cabeça" do Battleship irá spawnar, baseado nos valores sorteados pelos pickers.
 		    if(row <=9 || col <=9)
             {
-                auto posX = 1;
+                auto posX = 0;
 		        auto posY = picker1(seed);
-
-                for(int i(posX-1); i <= (posX+4); i++)
-                {
-                    for (int j (posY-1); j <= (posY+1); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
-
                 for(int i(0); i < 4; i++)  // Spawna o Battleship no board na Vertical
                 {
                     board[posX+i][posY] = 1; // Coloca cada peça do barco em uma linha inferior a anterior, com origem na coordenada criada anteriormente.
                                             // O número 1 no board significa que aquela casa está ocupada por parte de uma embarcação.
                 }
             }
-            else 
+             else 
             {
                 auto posX = picker2(seed);
 		        auto posY = picker1(seed);
-
-                for(int i(posX-1); i <= (posX+4); i++)
-                {
-                    for (int j (posY-1); j <= (posY+1); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
-
                 for(int i(0); i < 4; i++)  // Spawna o Battleship no board na Vertical
                 {
                     board[posX+i][posY] = 1; 
@@ -73,16 +55,8 @@ namespace ShipG
         {
             if(row <=9 || col <=9)
             {
-                auto posX = 1;
+                auto posX = 0;
                 auto posY = picker3(seed);
-
-                for(int i(posX-1); i <= (posX+1); i++)
-                {
-                    for (int j (posY-1); j <= (posY+4); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
 
                 for(int i(0); i < 4; i++)  // Spawna o Battleship no board na Horizontal
                 {
@@ -94,24 +68,15 @@ namespace ShipG
                 auto posX = picker1(seed);
                 auto posY = picker3(seed);
 
-                // Coloca as sombras do barco no mapa
-                for(int i(posX-1); i <= (posX+1); i++)
-                {
-                    for (int j (posY-1); j <= (posY+4); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
-
-                //Coloca o barco no mapa
                 for(int i(0); i < 4; i++)
                 {
                     board[posX][posY+i] = 1;
                 }
-                
             }		    
         }
         
+
+		BoardG::Print(board,col,row);
 
         /*Perceba que não existe uma função para verificar se existe barcos ao redor de onde este será spawnado, já que ele será o primeiro a ser colocado no board*/
 
@@ -123,11 +88,11 @@ namespace ShipG
         std::random_device rand;
 		std::mt19937 seed(rand());
 		
-		std::uniform_int_distribution <> picker1(1, col - 1);
+		std::uniform_int_distribution <> picker1(0, col);
 
-		std::uniform_int_distribution <> picker2(1, row - 3);
+		std::uniform_int_distribution <> picker2(0, row - 2);
 
-		std::uniform_int_distribution <> picker3(1, col - 3); 
+		std::uniform_int_distribution <> picker3(0, col - 2); 
 
         std::uniform_int_distribution <> V_or_H(0,1);
 		
@@ -141,7 +106,6 @@ namespace ShipG
         int guidance(0);
 
         int qtdBoat(2); // Quantidade de barcos que serão spawnados
-        int shadow (2);
 
         for (size_t i = 0; i < qtdBoat; i++)
         {   
@@ -161,7 +125,7 @@ namespace ShipG
                     {
                         for (int j (posY-1); j <= (posY+1); j++)
                         {
-                            if(board[i][j] != 0){
+                            if(board[i][j] == 1){
                                 checker = board[i][j];
                                 break;
                                 /*O elemento 0 na matriz representa a água, se o verificador achar algum elemento que não seja água nos arredores da embarcação,
@@ -171,13 +135,7 @@ namespace ShipG
                     }
                 } while(checker != 0); // Enquanto não for água;
             
-                for(int i(posX-1); i <= (posX+3); i++)
-                {
-                    for (int j (posY-1); j <= (posY+1); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
+
                 //Spawna um Cruiser na posição Vertical.
                 for(int i(0); i < 3; i++)
                 {
@@ -199,21 +157,13 @@ namespace ShipG
                     {
                         for (int j (posY-1); j <= (posY+3); j++)
                         {
-                            if(board[i][j] != 0){
+                            if(board[i][j] == 1){
                                 checker = board[i][j];
                                 break;
                             }
                         }
                     }
                 } while(checker != 0);
-
-                for(int i(posX-1); i <= (posX+1); i++)
-                {
-                    for (int j (posY-1); j <= (posY+3); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
 
                 //Spawna um Cruiser na posição Horizontal.
                 for(int i(0); i < 3; i++)
@@ -231,11 +181,11 @@ namespace ShipG
         std::random_device rand;
 		std::mt19937 seed(rand());
 		
-		std::uniform_int_distribution <> picker1(1, col-1);
+		std::uniform_int_distribution <> picker1(0, col);
 
-		std::uniform_int_distribution <> picker2(1, row - 2);
+		std::uniform_int_distribution <> picker2(0, row - 1);
 
-		std::uniform_int_distribution <> picker3(1, col - 2); 
+		std::uniform_int_distribution <> picker3(0, col - 1); 
 
         std::uniform_int_distribution <> V_or_H(0,1);
 		
@@ -244,7 +194,6 @@ namespace ShipG
 		int posX(0);
 		int posY(0);
         int guidance(0);
-        int shadow(2);
 
         int qtdBoat(3); 
 
@@ -266,7 +215,7 @@ namespace ShipG
                     {
                         for (int j (posY-1); j <= (posY+1); j++)
                         {
-                            if(board[i][j] != 0){
+                            if(board[i][j] == 1){
                                 checker = board[i][j];
                                 break;
                             }
@@ -274,14 +223,6 @@ namespace ShipG
                     }
                 } while(checker != 0);
             
-                for(int i(posX-1); i <= (posX+2); i++)
-                {
-                    for (int j (posY-1); j <= (posY+1); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
-
                 for(int i(0) ; i < 2; i++)
                 {
                     board[posX+i][posY] = 1;
@@ -301,7 +242,7 @@ namespace ShipG
                     {
                         for (int j (posY-1); j <= (posY+2); j++)
                         {
-                            if(board[i][j] != 0){
+                            if(board[i][j] == 1){
                                 checker = board[i][j];
                                 break;
                             }
@@ -309,13 +250,6 @@ namespace ShipG
                     }
                 } while(checker != 0);
                
-               for(int i(posX-1); i <= (posX+1); i++)
-                {
-                    for (int j (posY-1); j <= (posY+2); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
                 for(int i(0); i < 2; i++)
                 {
                     board[posX][posY+i] = 1;
@@ -330,11 +264,11 @@ namespace ShipG
         std::random_device rand;
 		std::mt19937 seed(rand());
 		
-		std::uniform_int_distribution <> picker1(1, col - 1);
+		std::uniform_int_distribution <> picker1(0, col);
 
-		std::uniform_int_distribution <> picker2(1, row - 1);
+		std::uniform_int_distribution <> picker2(0, row);
 
-		std::uniform_int_distribution <> picker3(1, col - 1); 
+		std::uniform_int_distribution <> picker3(0, col); 
 
         std::uniform_int_distribution <> V_or_H(0,1);
 		
@@ -342,7 +276,6 @@ namespace ShipG
         int checker(0);
 		int posX(0);
 		int posY(0);
-        int shadow(2);
 
         int qtdBoat(4); 
 
@@ -359,7 +292,7 @@ namespace ShipG
                 {
                     for (int j (posY-1); j <= (posY+1); j++)
                     {
-                        if(board[i][j] != 0){
+                        if(board[i][j] == 1 || board[i][j] == 3){
                             checker = board[i][j];
                             break;
                         }
@@ -367,15 +300,8 @@ namespace ShipG
                 }
             } while(checker != 0);
         
-             for(int i(posX-1); i <= (posX+1); i++)
-                {
-                    for (int j (posY-1); j <= (posY+1); j++)
-                    {
-                        board[i][j] = shadow;
-                    }
-                }
             
-            board[posX][posY] = 3; // Usamos uma nomenclatura diferente para o Submarine para facilitar o print com os símbolos.
+            board[posX+i][posY] = 3; // Usamos uma nomenclatura diferente para o Submarine para facilitar o print com os símbolos.
 
             /*Perceba que não usamos a orientação no caso do Submarine, já que ele ocupa somente uma casa no board*/                         
         }            

@@ -16,6 +16,8 @@ namespace BoardG
     void ReflectBoardHorizontal(std::vector<std::vector<int>> &board, int row, int col);
 
     void Print(std::vector<std::vector<int>> &board, int row,int col);
+    
+    void testPrint(std::vector<std::vector<int>> &board, int row,int col);
 }
 
 #endif
