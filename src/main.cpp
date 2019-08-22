@@ -121,7 +121,7 @@ int main( int argc, char *argv[] )
     
     std::cout << ">>> cols = " << c << ", rows = "  << r << ", npuzzles = " << np << std::endl;
 
-    PuzzleG::puzzle_generator(c,r,np,board);
+    PuzzleG::puzzle_generator(c,r,np);
 
     return EXIT_SUCCESS;
     

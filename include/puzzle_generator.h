@@ -2,6 +2,7 @@
 #define PUZZLEGENERATOR_H
 
 #include <iostream>
+#include <vector>
 
 
 namespace PuzzleG
