@@ -8,13 +8,9 @@ namespace PuzzleG
     {
         BoardG::Water(board,c,r); // Put water in all board
         ShipG::Battleship(board,c,r); // Spawn Battleship
-        BoardG::testPrint(board,c,r);
         ShipG::Crouiser(board,c,r); // Spawn Crouiser
-        BoardG::testPrint(board,c,r);
         ShipG::Destroyer(board,c,r);   // Spawn Destroyer
-        BoardG::testPrint(board,c,r);
         ShipG::Submarine(board,c,r); // Spawn Submarine
-        BoardG::testPrint(board,c,r);
         BoardG::Print(board,c,r);
     }
 
@@ -36,6 +32,15 @@ namespace PuzzleG
 
         int aux(0); // O auxiliar serve para informar quantos puzzles ja foram feitos
 
+        while(aux < np)
+        {
+            std::cout << aux+1 << std::endl;
+            PuzzleG::spawn_board(board,r,c);
+            aux++;
+        }
+        
+
+        /*
         if(np < 4)
         {
             while(aux < np)
@@ -67,5 +72,6 @@ namespace PuzzleG
 			    }
 		    }	    
         }
+        */
     }
 }

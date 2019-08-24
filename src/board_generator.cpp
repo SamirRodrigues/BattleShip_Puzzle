@@ -19,9 +19,9 @@ namespace BoardG
     void ReflectBoardVertical(std::vector<std::vector<int>> &board, int row, int col) /*Reflete a matriz de maneira vertical*/
     {
 		
-		for(int i(0); i < row; i++)
+		for(int i(1); i <= row; i++)
         {
-			for(int j(0); j < col/2; j++)
+			for(int j(1); j <= col/2; j++)
             {
 				int temp=board[i][j];
 				board[i][j]=board[i][row-1-j];
@@ -31,9 +31,9 @@ namespace BoardG
 	}
 
     void ReflectBoardHorizontal(std::vector<std::vector<int>> &board, int row, int col){ /*Reflete a matriz de maneira horizontal*/
-		for(int i(0); i < row/2; i++)
+		for(int i(1); i <= row/2; i++)
         {
-			for(int j(0); j < col; j++)
+			for(int j(1); j <= col; j++)
             {
 				int temp=board[i][j];
 				board[i][j]=board[row-1-i][j];
@@ -44,9 +44,9 @@ namespace BoardG
 
 	void testPrint(std::vector<std::vector<int>> &board, int row,int col)
 	{
-		for (int i(0); i < row; i++)
+		for (int i(1); i <= row; i++)
         {
-			for(int j(0); j < col; j++)
+			for(int j(1); j <= col; j++)
             {
 				std::cout << board[i][j];
 			}
@@ -56,11 +56,9 @@ namespace BoardG
 	}
     void Print(std::vector<std::vector<int>> &board, int row,int col)/*Responsável por mostrar o resultado gerado*/
 	{ 	
-		std::cout << std::endl << std::endl << std::endl;
-
-		for (int i(0); i < row; i++)
+		for (int i(1); i <= row; i++)
         {
-			for(int j(0); j < col; j++)
+			for(int j(1); j <= col; j++)
             {
 				if(board[i][j] == 1 /*Ele = 1*/ && board[i+1][j] == 1 /*Inferior = 1*/ && board[i-1][j] != 1 /*Superior != 1*/) // Se o elemento for barco e ponta vertical superir
                 {
@@ -91,8 +89,16 @@ namespace BoardG
                 {
 					std::cout<<". ";
 				}
+				/*
+				else if(board[i][j] == 2) // Se o elemento for sombra
+                {
+					std::cout<<"* ";
+				}
+				*/
 			}
 			std::cout << std::endl;
 		}
+
+		std::cout << std::endl;
 	}
 }
