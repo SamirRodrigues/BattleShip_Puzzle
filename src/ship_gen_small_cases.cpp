@@ -262,21 +262,16 @@ namespace ShipG
     void Submarine(std::vector<std::vector<int>> &board, int col, int row)
     {
         std::random_device rand;
-		std::mt19937 seed(rand());
-		
+		std::mt19937 seed(rand());		
 		std::uniform_int_distribution <> picker1(0, col);
-
 		std::uniform_int_distribution <> picker2(0, row);
-
 		std::uniform_int_distribution <> picker3(0, col); 
-
         std::uniform_int_distribution <> V_or_H(0,1);
 		
         
         int checker(0);
 		int posX(0);
 		int posY(0);
-
         int qtdBoat(4); 
 
         for (size_t i = 0; i < qtdBoat; i++)
@@ -298,10 +293,9 @@ namespace ShipG
                         }
                     }
                 }
-            } while(checker != 0);
-        
+            } while(checker != 0);        
             
-            board[posX+i][posY] = 3; // Usamos uma nomenclatura diferente para o Submarine para facilitar o print com os símbolos.
+            board[posX][posY] = 3; // Usamos uma nomenclatura diferente para o Submarine para facilitar o print com os símbolos.
 
             /*Perceba que não usamos a orientação no caso do Submarine, já que ele ocupa somente uma casa no board*/                         
         }            
