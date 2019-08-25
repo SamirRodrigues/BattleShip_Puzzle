@@ -19,9 +19,9 @@ namespace BoardG
     void ReflectBoardVertical(std::vector<std::vector<int>> &board, int row, int col) /*Reflete a matriz de maneira vertical*/
     {
 		
-		for(int i(1); i <= row; i++)
+		for(int i(0); i < row; i++)
         {
-			for(int j(1); j <= col/2; j++)
+			for(int j(0); j < col/2; j++)
             {
 				int temp=board[i][j];
 				board[i][j]=board[i][row-1-j];
@@ -31,9 +31,9 @@ namespace BoardG
 	}
 
     void ReflectBoardHorizontal(std::vector<std::vector<int>> &board, int row, int col){ /*Reflete a matriz de maneira horizontal*/
-		for(int i(1); i <= row/2; i++)
+		for(int i(0); i < row/2; i++)
         {
-			for(int j(1); j <= col; j++)
+			for(int j(0); j < col; j++)
             {
 				int temp=board[i][j];
 				board[i][j]=board[row-1-i][j];
