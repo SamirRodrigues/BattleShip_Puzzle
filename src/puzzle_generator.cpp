@@ -12,6 +12,7 @@ namespace PuzzleG
         ShipG::Destroyer(board,c,r);   // Spawn Destroyer
         ShipG::Submarine(board,c,r); // Spawn Submarine
         BoardG::Print(board,c,r);
+        
     }
 
     void ReflectBoard(std::vector<std::vector<int>> &board, int c, int r)
@@ -32,20 +33,21 @@ namespace PuzzleG
 
         int aux(0); // O auxiliar serve para informar quantos puzzles ja foram feitos
 
-        while(aux < np)
+       /* while(aux < np)
         {
             std::cout << aux+1 << std::endl;
             PuzzleG::spawn_board(board,r,c);
             aux++;
-        }
+        }*/
         
 
-        /*
+        
         if(np < 4)
         {
             while(aux < np)
             {
                 spawn_board(board,r,c);
+                /*SAIDA PARA TXT COM O PRINT*/
                 aux++;
             }
         }
@@ -58,6 +60,7 @@ namespace PuzzleG
             {
 			    PuzzleG::spawn_board(board,r,c); // Gera um puzzle base
 			    PuzzleG::ReflectBoard(board,r,c); // Cria 3 novos puzzles com base no anterior
+                /*SAIDA PARA TXT COM O PRINT*/
 			    aux++;
 		    }
 
@@ -68,10 +71,11 @@ namespace PuzzleG
 			    while(rest > 0) // Gera a quatidade igual ao resto da divisão acima
                 {
 				    PuzzleG::spawn_board(board,r,c); 
+                    /*SAIDA PARA TXT COM O PRINT*/
 				    rest --;
 			    }
 		    }	    
         }
-        */
+        
     }
 }

@@ -45,6 +45,9 @@ namespace ShipG
             {
                 board[posX+i][posY] = 1; 
             }
+
+
+            /*SAIDA PRO TXT, ONDE ELE VAI ARMAZENAR AS COORDENADAS, O TIPO DE BARCO E A ORIENTAÇÃO (V_or_H)*/
         } 
         else // Orientação Horizontal
         {
